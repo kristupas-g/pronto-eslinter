@@ -27,10 +27,7 @@ module Pronto
       def run_eslint
         full_command = "#{command} #{@files.join(' ')} --format json"
 
-        output = `#{full_command} 3>&1`
-        raise "ESLint Error: \n#{output}" unless $CHILD_STATUS.success?
-
-        output
+        `#{full_command} 3>&1`
       end
 
       def parse_output(output)
