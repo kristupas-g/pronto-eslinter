@@ -36,7 +36,9 @@ module Pronto
     end
 
     def suggestions?
-      @suggestion ||= @eslint_config['suggestion']
+      return @suggestion unless @suggestion.nil?
+
+      @suggestion ||= eslint_config['suggestion']
     end
 
     def eslint_config
