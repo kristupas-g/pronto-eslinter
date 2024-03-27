@@ -11,23 +11,24 @@ module Pronto
 
       files = @patches
         .select { |patch| patch.additions.positive? }
-        .flat_map { |patch| patch.new_file_full_path.to_s}
-        .select{ |file| file[/\.js$|\.jsx$|\.ts$|\.tsx$/] }
-      commit_sha = @patches.commit
-
-      return [] unless files
-      eslint_output = Pronto::Eslinter::Eslint.new(files).lint
-      suggestions = Pronto::Eslinter::Suggestions.new(eslint_output).suggest
-
-      messages(suggestions, commit_sha)
+        .flat_map { |patch| process_patch(patch) }
     end
 
-    def messages(suggestions, commit_sha)
-      messages = []
+    def process_patch(patch)
+      file = patch.new_file_full_path.to_s
+      return unless patch.new_file_full_path.to_s.match?(/\.js$|\.jsx$|\.ts$|\.tsx$/)
+
+      eslint_output = Pronto::Eslinter::Eslint.new([file]).lint
+      suggestions = Pronto::Eslinter::Suggestions.new(eslint_output).suggest
+
       suggestions.map do |suggestion|
-        messages.append(Message.new(suggestion[:path], suggestion[:line], :warning, msg(suggestion), commit_sha, self.class))
+        patch.added_lines.select { |line| line.new_lineno == suggestion[:line] }
+          .map { |line| messages(suggestion, line) }
       end
-      messages
+    end
+
+    def messages(suggestion, line)
+      Message.new(suggestion[:path], line, :warning, msg(suggestion), nil, self.class)
     end
 
     def msg(suggestion)
