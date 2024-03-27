@@ -46,7 +46,7 @@ module Pronto
         fixed_line = original_line.dup
         fixed_line[adjusted_start...adjusted_end] = fix[:text]
 
-        return nil if fixed_line.match?(/\n/)
+        #return nil if fixed_line.match?(/\n/)
 
         fixed_line
       end
