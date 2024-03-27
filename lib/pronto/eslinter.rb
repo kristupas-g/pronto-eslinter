@@ -34,13 +34,13 @@ module Pronto
     def msg(suggestion)
       return suggestion[:text] unless suggestions? && suggestion[:suggestion]
 
-      "#{suggestion[:text]}\n\n```suggestion\n#{suggestion[:suggestion]}```"
+      "#{suggestion[:text]}\n\n```suggestion\n#{suggestion[:suggestion]}\n```"
     end
 
     def suggestions?
       return @suggestion unless @suggestion.nil?
 
-      @suggestion ||= eslint_config['suggestion']
+      @suggestion ||= eslint_config['suggestions']
     end
 
     def eslint_config
