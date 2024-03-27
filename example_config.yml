@@ -1,0 +1,3 @@
+eslinter:
+  suggestions: true # Enables code suggestions in pull requests
+  command: 'npx eslint' # Command to run ESLint
