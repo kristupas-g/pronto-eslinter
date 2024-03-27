@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Pronto
-  module Eslinter
+  class Eslinter < Runner
     class Suggestions
       def initialize(data)
         @data = data

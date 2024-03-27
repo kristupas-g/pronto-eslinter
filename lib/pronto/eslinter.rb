@@ -1,19 +1,24 @@
 # frozen_string_literal: true
 
 require 'pronto'
-require 'pry'
+require 'pronto/eslinter/eslint'
+require 'pronto/eslinter/suggestions'
 
 module Pronto
   class Eslinter < Runner
     def run
+      pp "#{@patches.any?} patches found"
+
       return [] unless @patches
 
       files = @patches
         .select { |patch| patch.additions.positive? }
         .flat_map { |patch| patch.new_file_full_path.to_s }
 
-      eslint_output = Pronto::Eslinter::Eslint.new(files).run
+      eslint_output = Pronto::Eslinter::Eslint.new(files).lint
+      pp eslint_output
       suggestions = Pronto::Eslinter::Suggestions.new(eslint_output).suggest
+      pp suggestions
 
       messages(suggestions)
     end
