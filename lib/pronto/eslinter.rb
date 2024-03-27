@@ -25,7 +25,7 @@ module Pronto
     def messages(suggestions, commit_sha)
       messages = []
       suggestions.map do |suggestion|
-        Message.new(suggestion[:path], suggestion[:line], :warning, msg(suggestion), commit_sha, self.class)
+        messages.append(Message.new(suggestion[:path], suggestion[:line], :warning, msg(suggestion), commit_sha, self.class))
       end
       messages
     end
