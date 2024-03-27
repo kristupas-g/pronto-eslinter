@@ -31,9 +31,9 @@ module Pronto
     end
 
     def msg(suggestion)
-      return suggestion[:text] unless suggestions? && suggestion[:suggestions]
+      return suggestion[:text] unless suggestions? && suggestion[:suggestion]
 
-      "#{suggestion[:text]}\n\n```suggestion\n#{suggestion[:suggestions]}```"
+      "#{suggestion[:text]}\n\n```suggestion\n#{suggestion[:suggestion]}```"
     end
 
     def suggestions?
