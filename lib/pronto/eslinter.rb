@@ -5,16 +5,17 @@ require 'pry'
 
 module Pronto
   class Eslinter < Runner
-
     def run
       return [] unless @patches
 
       files = @patches
         .select { |patch| patch.additions.positive? }
-        .flat_map { |patch| patch.new_file_full_path.to_s}
-      linted_files = Eslint.new(files).run
+        .flat_map { |patch| patch.new_file_full_path.to_s }
 
-      messages(linted_files)
+      eslint_output = Pronto::Eslinter::Eslint.new(files).run
+      suggestions = Pronto::Eslinter::Suggestions.new(eslint_output).suggest
+
+      messages(suggestions)
     end
 
     def messages(linted_files)
