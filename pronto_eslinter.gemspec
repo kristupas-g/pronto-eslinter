@@ -1,5 +1,7 @@
+$LOAD_PATH.push File.expand_path('../lib', __FILE__)
+
 Gem::Specification.new do |spec|
-  spec.name        = 'pronto_eslinter'
+  spec.name        = 'pronto-eslinter'
   spec.version     = '0.1.0'
   spec.authors     = ['Kristupas Gaidys' 'Ugnius Pacauskas']
   spec.email       = ['kristupas.gaidys@vinted.com', 'ugnius.pacauskas@vinted.com']
@@ -12,4 +14,5 @@ Gem::Specification.new do |spec|
 
   spec.required_ruby_version = '>= 3.1.3'
   spec.metadata['rubygems_mfa_required'] = 'true'
+  spec.require_paths = ['lib']
 end
