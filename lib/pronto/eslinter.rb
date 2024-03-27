@@ -7,8 +7,6 @@ require 'pronto/eslinter/suggestions'
 module Pronto
   class Eslinter < Runner
     def run
-      pp "#{@patches.any?} patches found"
-
       return [] unless @patches
 
       files = @patches
@@ -18,9 +16,7 @@ module Pronto
 
       return [] unless files
       eslint_output = Pronto::Eslinter::Eslint.new(files).lint
-      pp eslint_output
       suggestions = Pronto::Eslinter::Suggestions.new(eslint_output).suggest
-      pp suggestions
 
       messages(suggestions)
     end
