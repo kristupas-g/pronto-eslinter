@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'English'
+
 module Pronto
   class Eslinter < Runner
     class Eslint
@@ -25,7 +27,7 @@ module Pronto
       def run_eslint
         full_command = "#{command} #{@files.join(' ')} --format json"
 
-        output = system("#{full_command} 2>&1")
+        output = `#{full_command} 3>&1`
         raise "ESLint Error: \n#{output}" unless $CHILD_STATUS.success?
 
         output
