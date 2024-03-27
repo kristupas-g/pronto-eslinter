@@ -25,15 +25,18 @@ module Pronto
       def run_eslint
         full_command = "#{command} #{@files.join(' ')} --format json"
 
-        output = `#{full_command} 2>&1`
-
-        raise StandardError("ESLint Error: \n#{output}") unless $CHILD_STATUS.success?
+        output = system("#{full_command} 2>&1")
+        raise "ESLint Error: \n#{output}" unless $CHILD_STATUS.success?
 
         output
       end
 
       def parse_output(output)
-        json_str = output[/\[\{.+\}\]/m]
+        json_str = output
+          .split("\n")
+          .drop_while { |line| !line.start_with?('[') }
+          .join("\n")
+
         JSON.parse(json_str, symbolize_names: true)
       end
     end
