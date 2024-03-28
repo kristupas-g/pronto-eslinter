@@ -2,7 +2,7 @@ $LOAD_PATH.push File.expand_path('../lib', __FILE__)
 
 Gem::Specification.new do |spec|
   spec.name        = 'pronto-eslinter'
-  spec.version     = '0.1.0'
+  spec.version     = '0.1.1'
   spec.authors     = ['Kristupas Gaidys', 'Ugnius Pacauskas', 'Andrius Prudnikovas']
   spec.email       = ['kristupas.gaidys@vinted.com', 'ugnius.pacauskas@vinted.com']
   spec.summary     = %q(Eslint runner for Pronto)
