@@ -28,7 +28,9 @@ module Pronto
     end
 
     def messages(suggestion, line)
-      Message.new(suggestion[:path], line, :warning, msg(suggestion), nil, self.class)
+      path = line.patch.delta.new_file[:path]
+
+      Message.new(path, line, :warning, msg(suggestion), nil, self.class)
     end
 
     def msg(suggestion)
