@@ -1,0 +1,2 @@
+eslinter:
+  command: 'yarn -s run eslint'

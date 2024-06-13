@@ -1,8 +1,44 @@
 ## Pronto eslinter
 
-Just another `eslint` runner for the pronto ecosystem. Just that this one supports Github suggestions
+Yet another `eslint` runner for the pronto ecosystem. This one provides support for warnings and suggestions.
 
-### Motivation
+### Installation
 
-During a hackathon we needed a tool to generate eslint messages in our pull requests along with code change suggestions
-similar to the way it is done in [pronto-rubocop](https://github.com/prontolabs/pronto-rubocop)
+```bash
+gem install pronto-eslint
+```
+
+Or add it to your Gemfile:
+
+```ruby
+gem 'pronto-eslint'
+```
+
+Add the following to your `.pronto.yml`:
+
+```yaml
+eslinter:
+  suggestions: true # default: false
+runners:
+  - eslinter
+```
+
+### Configuration
+
+#### ESlint:
+ESlint will look at your `eslint.config.js` file for configuration.
+
+#### Command Line:
+You can change how ESLint is called from the command line by adding the following to your `.pronto.yml`:
+
+
+```yaml
+eslinter:
+  command: 'yarn -s run eslint' # default: 'npx eslint'
+```
+
+### Usage
+
+```bash
+pronto run
+```
