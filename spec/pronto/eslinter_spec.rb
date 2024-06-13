@@ -9,6 +9,8 @@ module Pronto
     describe '#run' do
       subject(:run) { eslint.run }
 
+      let(:eslint_doc_url) { 'https://eslint.org/docs/latest/rules/' }
+
       context 'when patches are nil' do
         let(:patches) { nil }
 
@@ -21,7 +23,7 @@ module Pronto
         it { should == [] }
       end
 
-      context 'with an invalid .eslintrc config' do
+      context 'with an invalid eslint.config.js config' do
         include_context 'test repo'
         include_context 'eslintrc error'
 
@@ -38,14 +40,14 @@ module Pronto
         let(:patches) { repo.diff('main') }
         let(:messages) do
           [
-            'Expected a function expression. eslint([func-style](https://eslint.org/docs/latest/rules/func-style))',
-            "'Hello' is defined but never used. eslint([no-unused-vars](https://eslint.org/docs/latest/rules/no-unused-vars))",
-            "'foo' is not defined. eslint([no-undef](https://eslint.org/docs/latest/rules/no-undef))",
-            "Expected { after 'if' condition. eslint([curly](https://eslint.org/docs/latest/rules/curly))",
-            "Unary operator '++' used. eslint([no-plusplus](https://eslint.org/docs/latest/rules/no-plusplus))",
-            "'foo' is not defined. eslint([no-undef](https://eslint.org/docs/latest/rules/no-undef))",
-            'Unexpected alert. eslint([no-alert](https://eslint.org/docs/latest/rules/no-alert))',
-            "'alert' is not defined. eslint([no-undef](https://eslint.org/docs/latest/rules/no-undef))"
+            "Expected a function expression. eslint([func-style](#{eslint_doc_url}func-style))",
+            "'Hello' is defined but never used. eslint([no-unused-vars](#{eslint_doc_url}no-unused-vars))",
+            "'foo' is not defined. eslint([no-undef](#{eslint_doc_url}no-undef))",
+            "Expected { after 'if' condition. eslint([curly](#{eslint_doc_url}curly))",
+            "Unary operator '++' used. eslint([no-plusplus](#{eslint_doc_url}no-plusplus))",
+            "'foo' is not defined. eslint([no-undef](#{eslint_doc_url}no-undef))",
+            "Unexpected alert. eslint([no-alert](#{eslint_doc_url}no-alert))",
+            "'alert' is not defined. eslint([no-undef](#{eslint_doc_url}no-undef))"
           ]
         end
 
@@ -61,14 +63,14 @@ module Pronto
         let(:patches) { repo.diff('main') }
         let(:messages) do
           [
-            'Expected a function expression. eslint([func-style](https://eslint.org/docs/latest/rules/func-style))',
-            "'Hello' is defined but never used. eslint([no-unused-vars](https://eslint.org/docs/latest/rules/no-unused-vars))",
-            "'foo' is not defined. eslint([no-undef](https://eslint.org/docs/latest/rules/no-undef))",
-            "Expected { after 'if' condition. eslint([curly](https://eslint.org/docs/latest/rules/curly))\n\n```suggestion\n{foo++;}\n```",
-            "Unary operator '++' used. eslint([no-plusplus](https://eslint.org/docs/latest/rules/no-plusplus))",
-            "'foo' is not defined. eslint([no-undef](https://eslint.org/docs/latest/rules/no-undef))",
-            'Unexpected alert. eslint([no-alert](https://eslint.org/docs/latest/rules/no-alert))',
-            "'alert' is not defined. eslint([no-undef](https://eslint.org/docs/latest/rules/no-undef))"
+            "Expected a function expression. eslint([func-style](#{eslint_doc_url}func-style))",
+            "'Hello' is defined but never used. eslint([no-unused-vars](#{eslint_doc_url}no-unused-vars))",
+            "'foo' is not defined. eslint([no-undef](#{eslint_doc_url}no-undef))",
+            "Expected { after 'if' condition. eslint([curly](#{eslint_doc_url}curly))\n\n```suggestion\n{foo++;}\n```",
+            "Unary operator '++' used. eslint([no-plusplus](#{eslint_doc_url}no-plusplus))",
+            "'foo' is not defined. eslint([no-undef](#{eslint_doc_url}no-undef))",
+            "Unexpected alert. eslint([no-alert](#{eslint_doc_url}no-alert))",
+            "'alert' is not defined. eslint([no-undef](#{eslint_doc_url}no-undef))"
           ]
         end
 
@@ -84,14 +86,14 @@ module Pronto
         let(:patches) { repo.diff('main') }
         let(:messages) do
           [
-            'Expected a function expression. eslint([func-style](https://eslint.org/docs/latest/rules/func-style))',
-            "'Hello' is defined but never used. eslint([no-unused-vars](https://eslint.org/docs/latest/rules/no-unused-vars))",
-            "'foo' is not defined. eslint([no-undef](https://eslint.org/docs/latest/rules/no-undef))",
-            "Expected { after 'if' condition. eslint([curly](https://eslint.org/docs/latest/rules/curly))",
-            "Unary operator '++' used. eslint([no-plusplus](https://eslint.org/docs/latest/rules/no-plusplus))",
-            "'foo' is not defined. eslint([no-undef](https://eslint.org/docs/latest/rules/no-undef))",
-            'Unexpected alert. eslint([no-alert](https://eslint.org/docs/latest/rules/no-alert))',
-            "'alert' is not defined. eslint([no-undef](https://eslint.org/docs/latest/rules/no-undef))"
+            "Expected a function expression. eslint([func-style](#{eslint_doc_url}func-style))",
+            "'Hello' is defined but never used. eslint([no-unused-vars](#{eslint_doc_url}no-unused-vars))",
+            "'foo' is not defined. eslint([no-undef](#{eslint_doc_url}no-undef))",
+            "Expected { after 'if' condition. eslint([curly](#{eslint_doc_url}curly))",
+            "Unary operator '++' used. eslint([no-plusplus](#{eslint_doc_url}no-plusplus))",
+            "'foo' is not defined. eslint([no-undef](#{eslint_doc_url}no-undef))",
+            "Unexpected alert. eslint([no-alert](#{eslint_doc_url}no-alert))",
+            "'alert' is not defined. eslint([no-undef](#{eslint_doc_url}no-undef))"
           ]
         end
 

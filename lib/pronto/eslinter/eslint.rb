@@ -24,7 +24,7 @@ module Pronto
       private
 
       def command
-        eslint_config['command'] || 'npx eslint'
+        eslint_config['command'] || 'yarn -s run eslint'
       end
 
       def run_eslint

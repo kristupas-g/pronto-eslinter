@@ -3,6 +3,10 @@
   "private": "true",
   "type": "module",
   "dependencies": {
-    "eslint": "^9.4.0"
+  },
+  "devDependencies": {
+    "eslint": "latest"
+  },
+  "peerDependencies": {
   }
 }

@@ -1,2 +1,2 @@
 eslinter:
-  command: 'yarn -s run eslint'
+  command: 'npx eslint'
