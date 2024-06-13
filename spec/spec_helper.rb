@@ -13,20 +13,20 @@ RSpec.shared_context 'test repo' do
   after { FileUtils.mv(dot_git, git) }
 end
 
-RSpec.shared_context 'eslintrc' do
-  let(:eslintrc) { 'spec/fixtures/eslint.config.js' }
-  let(:dot_eslintrc) { 'eslint.config.js' }
+RSpec.shared_context 'eslint.config.js' do
+  let(:eslint_config_js) { 'spec/fixtures/eslint.config.js' }
+  let(:dot_eslint_config_js) { 'eslint.config.js' }
 
-  before { FileUtils.mv(eslintrc, dot_eslintrc) }
-  after { FileUtils.mv(dot_eslintrc, eslintrc) }
+  before { FileUtils.mv(eslint_config_js, dot_eslint_config_js) }
+  after { FileUtils.mv(dot_eslint_config_js, eslint_config_js) }
 end
 
-RSpec.shared_context 'eslintrc error' do
-  let(:eslintrc) { 'spec/fixtures/eslint.config.js.bad' }
-  let(:dot_eslintrc) { 'eslint.config.js' }
+RSpec.shared_context 'eslint.config.js error' do
+  let(:eslint_config_js) { 'spec/fixtures/eslint.config.js.bad' }
+  let(:dot_eslint_config_js) { 'eslint.config.js' }
 
-  before { FileUtils.mv(eslintrc, dot_eslintrc) }
-  after { FileUtils.mv(dot_eslintrc, eslintrc) }
+  before { FileUtils.mv(eslint_config_js, dot_eslint_config_js) }
+  after { FileUtils.mv(dot_eslint_config_js, eslint_config_js) }
 end
 
 RSpec.shared_context 'suggestions config' do
@@ -43,6 +43,14 @@ RSpec.shared_context 'command config' do
 
   before { FileUtils.mv(command_config, dot_command_config) }
   after { FileUtils.mv(dot_command_config, command_config) }
+end
+
+RSpec.shared_context 'file filter config' do
+  let(:file_filter_config) { 'spec/fixtures/file_filter_config.yml' }
+  let(:dot_file_filter_config) { '.pronto.yml' }
+
+  before { FileUtils.mv(file_filter_config, dot_file_filter_config) }
+  after { FileUtils.mv(dot_file_filter_config, file_filter_config) }
 end
 
 RSpec.shared_context 'esbuild pre config deprecation' do
