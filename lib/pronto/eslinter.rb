@@ -19,9 +19,17 @@ module Pronto
 
     def process_patch(patch)
       file = patch.new_file_full_path.to_s
-      return unless patch.new_file_full_path.to_s.match?(/\.js$|\.jsx$|\.ts$|\.tsx$/)
+      return unless patch.new_file_full_path.to_s =~ files_to_lint
 
       Pronto::Eslinter::Eslint.new([file], patch, self).lint.messages
+    end
+
+    def files_regex
+      eslint_config[:file_regex] || '\.js$|\.jsx$|\.ts$|\.tsx$'
+    end
+
+    def files_to_lint
+      Regexp.new(files_regex)
     end
 
     def eslint_config

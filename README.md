@@ -5,20 +5,19 @@ Yet another `eslint` runner for the pronto ecosystem. This one provides support 
 ### Installation
 
 ```bash
-gem install pronto-eslint
+gem install pronto pronto-eslinter
 ```
 
 Or add it to your Gemfile:
 
 ```ruby
-gem 'pronto-eslint'
+gem 'pronto'
+gem 'pronto-eslinter'
 ```
 
 Add the following to your `.pronto.yml`:
 
 ```yaml
-eslinter:
-  suggestions: true # default: false
 runners:
   - eslinter
 ```
@@ -28,13 +27,19 @@ runners:
 #### ESlint:
 ESlint will look at your `eslint.config.js` file for configuration.
 
-#### Command Line:
-You can change how ESLint is called from the command line by adding the following to your `.pronto.yml`:
 
+#### Pronto:
 
 ```yaml
 eslinter:
-  command: 'yarn -s run eslint' # default: 'npx eslint'
+  # Enable suggestions in GitHub
+  suggestions: true # default: false
+
+  # Change the command to run eslint
+  command: 'npx eslint' # default: 'yarn -s run eslint'
+
+  # Change the file regex to match your files
+  file_regex: '\.jsx?$' # default: '\.js$|\.jsx$|\.ts$|\.tsx$'
 ```
 
 ### Usage
