@@ -16,3 +16,6 @@ Layout/MultilineMethodCallIndentation:
 Metrics/BlockLength:
   Exclude:
     - spec/**/*_spec.rb
+
+Metrics/ModuleLength:
+  CountAsOne: [Array, Hash]
