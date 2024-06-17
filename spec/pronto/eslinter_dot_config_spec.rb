@@ -28,10 +28,7 @@ module Pronto
           ]
         end
 
-        its(:count) { should == 6 }
-        it {
-          expect(run.map(&:msg)).to match_array(messages)
-        }
+        it { expect(run.map(&:msg)).to match_array(messages) }
       end
 
       context 'when using dot config on a pre-deprecation release of eslint with suggestions' do
@@ -52,11 +49,7 @@ module Pronto
           ]
         end
 
-        its(:count) { should == 6 }
-        it {
-          run.map(&:msg)
-          expect(run.map(&:msg)).to match_array(messages)
-        }
+        it { expect(run.map(&:msg)).to match_array(messages) }
       end
     end
   end
