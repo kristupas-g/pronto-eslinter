@@ -18,4 +18,4 @@ Metrics/BlockLength:
     - spec/**/*_spec.rb
 
 Metrics/ModuleLength:
-  CountAsOne: [Array, Hash]
+  CountAsOne: ['array', 'hash']
