@@ -21,7 +21,7 @@ module Pronto
         :eslint_output
       )
 
-      def_delegators :eslint_output, :eslint_config, :file_path, :patch
+      def_delegators :eslint_output, :eslint_config, :patch
 
       def initialize(offense, eslint_output)
         map_offense(offense)
@@ -63,6 +63,10 @@ module Pronto
 
       def patch_line
         @patch_line ||= patch.added_lines.find { |l| l.new_lineno == line }
+      end
+
+      def file_path
+        patch_line.patch.delta.new_file[:path]
       end
 
       def level
