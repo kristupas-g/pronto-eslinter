@@ -7,7 +7,7 @@ module Pronto
 
       attr_reader :offense
 
-      def_delegators :offense, :eslint_config, :eslint_output, :line, :fix
+      def_delegators :offense, :eslint_config, :eslint_output, :line, :fix, :column, :end_line, :end_column
       def_delegators :eslint_output, :source
 
       def initialize(offense)
@@ -27,7 +27,7 @@ module Pronto
       end
 
       def original_lines
-        (source || '').lines
+        (source || '').lines("\n")
       end
 
       def original_line
@@ -39,11 +39,19 @@ module Pronto
       end
 
       def fixed_line
-        range_start, range_end = fix[:range]
-        adjusted_start = range_start - line_start_in_source
-        adjusted_end = range_end - line_start_in_source
+        "#{left}#{fix[:text]}#{right}"
+      end
 
-        original_line.dup[adjusted_start...adjusted_end] = fix[:text]
+      def left
+        original_line[0...column - 1]
+      end
+
+      def right
+        if end_column < column
+          original_line[left.size...]
+        else
+          original_line[end_column - 1...]
+        end
       end
 
       def enabled?

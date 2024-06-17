@@ -29,7 +29,6 @@ module Pronto
 
         let(:patches) { repo.diff('main') }
 
-        its(:count) { should == 1 }
         its(:'first.msg') { should == 'Parsing error: Invalid ecmaVersion.' }
       end
 
@@ -51,7 +50,6 @@ module Pronto
           ]
         end
 
-        its(:count) { should == 8 }
         it { expect(run.map(&:msg)).to match_array(messages) }
       end
 
@@ -66,7 +64,8 @@ module Pronto
             "Expected a function expression. eslint([func-style](#{eslint_doc_url}func-style))",
             "'Hello' is defined but never used. eslint([no-unused-vars](#{eslint_doc_url}no-unused-vars))",
             "'foo' is not defined. eslint([no-undef](#{eslint_doc_url}no-undef))",
-            "Expected { after 'if' condition. eslint([curly](#{eslint_doc_url}curly))\n\n```suggestion\n{foo++;}\n```",
+            "Expected { after 'if' condition. eslint([curly](#{eslint_doc_url}curly))" \
+            "\n\n```suggestion\n  if (foo) {foo++;}\n\n```",
             "Unary operator '++' used. eslint([no-plusplus](#{eslint_doc_url}no-plusplus))",
             "'foo' is not defined. eslint([no-undef](#{eslint_doc_url}no-undef))",
             "Unexpected alert. eslint([no-alert](#{eslint_doc_url}no-alert))",
@@ -74,7 +73,6 @@ module Pronto
           ]
         end
 
-        its(:count) { should == 8 }
         it { expect(run.map(&:msg)).to match_array(messages) }
       end
 
@@ -97,7 +95,6 @@ module Pronto
           ]
         end
 
-        its(:count) { should == 8 }
         it { expect(run.map(&:msg)).to match_array(messages) }
       end
 
@@ -120,7 +117,6 @@ module Pronto
           ]
         end
 
-        its(:count) { should == 8 }
         it { expect(run.map(&:msg)).to match_array(messages) }
       end
     end

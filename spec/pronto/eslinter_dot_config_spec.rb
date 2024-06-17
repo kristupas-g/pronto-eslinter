@@ -11,7 +11,7 @@ module Pronto
 
       let(:eslint_doc_url) { 'https://eslint.org/docs/latest/rules/' }
 
-      include_context 'esbuild pre config deprecation'
+      include_context 'eslint pre config deprecation'
 
       context 'when using dot config on a pre-deprecation release of eslint' do
         include_context 'test repo'
@@ -44,7 +44,7 @@ module Pronto
           [
             "'Hello' is defined but never used. eslint([no-unused-vars](#{eslint_doc_url}no-unused-vars))",
             "Missing space before opening brace. eslint([space-before-blocks](#{eslint_doc_url}space-before-blocks))" \
-            "\n\n```suggestion\n \n```",
+            "\n\n```suggestion\nfunction Hello(name) {\n\n```",
             "'foo' is not defined. eslint([no-undef](#{eslint_doc_url}no-undef))",
             "Unary operator '++' used. eslint([no-plusplus](#{eslint_doc_url}no-plusplus))",
             "'foo' is not defined. eslint([no-undef](#{eslint_doc_url}no-undef))",
