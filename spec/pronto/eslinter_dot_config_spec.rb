@@ -41,7 +41,7 @@ module Pronto
           [
             "'Hello' is defined but never used. eslint([no-unused-vars](#{eslint_doc_url}no-unused-vars))",
             "Missing space before opening brace. eslint([space-before-blocks](#{eslint_doc_url}space-before-blocks))" \
-            "\n\n```suggestion\nfunction Hello(name) {\n\n```",
+            "\n\n```suggestion\nfunction Hello(name) {\n```",
             "'foo' is not defined. eslint([no-undef](#{eslint_doc_url}no-undef))",
             "Unary operator '++' used. eslint([no-plusplus](#{eslint_doc_url}no-plusplus))",
             "'foo' is not defined. eslint([no-undef](#{eslint_doc_url}no-undef))",

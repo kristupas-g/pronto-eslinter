@@ -17,7 +17,7 @@ module Pronto
       def suggest
         return unless enabled? && suggestable?
 
-        "\n\n```suggestion\n#{fixed_line}\n```"
+        "\n\n```suggestion\n#{fixed_line}#{new_line_maybe}```"
       end
 
       private
@@ -52,6 +52,10 @@ module Pronto
         else
           original_line[end_column - 1...]
         end
+      end
+
+      def new_line_maybe
+        "\n" unless fixed_line.end_with?("\n")
       end
 
       def enabled?
