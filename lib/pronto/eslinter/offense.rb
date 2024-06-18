@@ -66,7 +66,7 @@ module Pronto
       end
 
       def file_path
-        patch_line.patch.delta.new_file[:path]
+        patch_line.patch.delta.new_file[:path] if patch_line
       end
 
       def level
