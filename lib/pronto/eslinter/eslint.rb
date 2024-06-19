@@ -5,29 +5,30 @@ require 'English'
 module Pronto
   class Eslinter < Runner
     class Eslint
-      def initialize(files)
+      extend Forwardable
+
+      attr_reader :files, :patch, :eslinter
+
+      def_delegator :eslinter, :eslint_config
+
+      def initialize(files, patch, eslinter)
         @files = files
+        @patch = patch
+        @eslinter = eslinter
       end
 
       def lint
-        eslint_output = run_eslint
-        parse_output(eslint_output)
+        Output.new(parse_output(run_eslint), patch, eslinter)
       end
 
       private
 
-      def eslint_config
-        @eslint_config ||= Pronto::ConfigFile.new.to_h['eslinter'] || {}
-      end
-
       def command
-        eslint_config['command'] || 'npx eslint'
+        eslint_config['command'] || 'yarn -s run eslint'
       end
 
       def run_eslint
-        full_command = "#{command} #{@files.join(' ')} --format json"
-
-        `#{full_command} 3>&1`
+        `#{command} #{files.join(' ')} --format json 3>&1`
       end
 
       def parse_output(output)

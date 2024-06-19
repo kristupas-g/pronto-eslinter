@@ -1,0 +1,2 @@
+eslinter:
+  file_filter: '.*\.js$'

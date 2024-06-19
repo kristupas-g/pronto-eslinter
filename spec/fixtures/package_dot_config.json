@@ -1,0 +1,12 @@
+{
+  "name": "app",
+  "private": "true",
+  "type": "module",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "eslint": "latest"
+  },
+  "peerDependencies": {
+  }
+}

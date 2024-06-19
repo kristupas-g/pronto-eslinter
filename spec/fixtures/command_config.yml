@@ -1,0 +1,2 @@
+eslinter:
+  command: 'npx eslint'

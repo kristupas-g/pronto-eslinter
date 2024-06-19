@@ -6,3 +6,4 @@ Gemfile.lock
 Gemfile.local
 .dev.pronto.yml
 .irbrc
+node_modules/

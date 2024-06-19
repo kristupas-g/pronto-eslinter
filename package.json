@@ -1,0 +1,8 @@
+{
+  "name": "app",
+  "private": "true",
+  "type": "module",
+  "dependencies": {
+    "eslint": "^9.5.0"
+  }
+}

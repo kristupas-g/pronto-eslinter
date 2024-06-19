@@ -1,0 +1,7 @@
+env:
+    browser: true
+parserOptions:
+  ecmaVersion: 13
+  sourceType: 'module'
+extends:
+  - 'airbnb-base'

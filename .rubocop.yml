@@ -12,3 +12,10 @@ Layout/MultilineOperationIndentation:
 
 Layout/MultilineMethodCallIndentation:
   EnforcedStyle: indented
+
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*_spec.rb
+
+Metrics/ModuleLength:
+  CountAsOne: ['array', 'hash']
