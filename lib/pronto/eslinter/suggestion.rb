@@ -22,8 +22,11 @@ module Pronto
 
       private
 
+      # Suggestion config must be enabled
+      # Offense must have a fix
+      # The fix must be on the same line as the offense (no multi-line suggestions)
       def suggestable?
-        enabled? && !fix.nil?
+        enabled? && !fix.nil? && line == end_line
       end
 
       def original_lines
